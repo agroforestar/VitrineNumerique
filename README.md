@@ -37,7 +37,7 @@ Ce projet Unity propose deux fonctionnalités. La première permet de projeter e
 
 - Au démarrage, l'application affiche un menu permettant de choisir entre le mode "parcelles pré-faites" et "création de parcelles".
 - Dans le mode "création de parcelles", il faut utiliser le bouton "Enregistrer la position GPS" en bas à droite de l'écran pour marquer sa position GPS. Une fois une deuxième position GPS enregistrée, une rangée de plantes apparaîtra entre les points.  
-- Il est nécessaire de s'éloigner d'au moins 5 mètres environ entre les deux points GPS. Si les deux points sont trop proches, un message s'affichera et une plante sera créée.
+- Il est nécessaire de s'éloigner d'au moins 5 mètres environ entre les deux points GPS. Si les deux points sont trop proches, un message s'affichera et une seule plante sera créée.
 
 ### Notes Additionnelles
 
