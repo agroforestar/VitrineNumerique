@@ -16,6 +16,9 @@ using System;
 public class PosInterpolation : MonoBehaviour
 {
    
+
+    public float espacement = 7f;
+    public TMP_InputField inputEspacement;
    
     private string ArbreOuHaie = "arbre";
     
@@ -25,6 +28,10 @@ public class PosInterpolation : MonoBehaviour
    
 
    
+
+    private GameObject _panelEspacementValid;
+    private GameObject _panelEspacementNonValid;
+
    
     private GameObject _panelTropCourt;
     private GameObject _panelNewpointGPS;
@@ -49,6 +56,16 @@ public class PosInterpolation : MonoBehaviour
 
     private void Start()
     {
+        
+        _panelEspacementValid = GameObject.Find("espacementValid");
+        _panelEspacementValid.SetActive(false);
+
+        _panelEspacementNonValid = GameObject.Find("espacementNonValid");
+        _panelEspacementNonValid.SetActive(false);
+        
+
+
+        
         _panelTropCourt = GameObject.Find("tropcourt");
         _panelTropCourt.SetActive(false);
 
@@ -104,6 +121,8 @@ public class PosInterpolation : MonoBehaviour
     private void Interpol()
     {
         
+        _panelEspacementValid.SetActive(false);
+        _panelEspacementNonValid.SetActive(false);
 
         // Options pour le placement des objets
         var opts = new PlaceAtLocation.PlaceAtOptions()
@@ -133,7 +152,7 @@ public class PosInterpolation : MonoBehaviour
         float distanceMeters = CalculateDistance(lat1, lon1, lat2, lon2);
 
         // Calcul du nombre d'arbres à placer entre les deux positions
-        int numTrees = Mathf.Max(Mathf.RoundToInt(distanceMeters / 7f), 1); // 7f correspond à l'écart en m entre les arbres
+        int numTrees = Mathf.Max(Mathf.RoundToInt(distanceMeters / espacement), 1); 
 
         print("Distance entre les deux points en m :");
         print(distanceMeters);
@@ -181,7 +200,7 @@ public class PosInterpolation : MonoBehaviour
                 Location location = new Location(lat1, lon1, -12); 
                 PlaceAtLocation.AddPlaceAtComponent(haieClone, location, opts);
                 print("Haie créé à la position actuelle (sans interpolation) : " + location);
-                textMeshUnSeulCree.text = "Distance entre les deux points GPS trop courte : une seule haie créé";
+                textMeshUnSeulCree.text = "Distance entre les deux points GPS trop courte : une seule haie créée";
                 _panelTropCourt.SetActive(true);     
             }
             
@@ -213,7 +232,7 @@ public class PosInterpolation : MonoBehaviour
                     PlaceAtLocation.AddPlaceAtComponent(treeClone, location, opts);
 
                     print("Arbre créé à la position interpolée : " + location);
-                    textMeshProArbresSpawn.text = "Rangée de " + numTrees + " arbres créé, chacun espacé de 7m ";
+                    textMeshProArbresSpawn.text = "Rangée de " + numTrees + " arbres créé, chacun espacé de " + espacement + "m";
                     _panelArbresSpawn.SetActive(true);
                 }
             }
@@ -242,7 +261,7 @@ public class PosInterpolation : MonoBehaviour
                     PlaceAtLocation.AddPlaceAtComponent(haieClone, location, opts);
 
                     print("Haie créé à la position interpolée : " + location);
-                    textMeshProArbresSpawn.text = "Rangée de " + numTrees + " haies créé, chacune espacé de 7m ";
+                    textMeshProArbresSpawn.text = "Rangée de " + numTrees + " haies créé, chacune espacée de " + espacement + "m";
                     _panelArbresSpawn.SetActive(true);
                 }
             }
@@ -352,6 +371,40 @@ public class PosInterpolation : MonoBehaviour
         float distance = EarthRadius * c; // Distance en mètres
         return distance;
     }
+
+
+
+
+
+    /////////////////////////////////
+    
+    public void ValiderEspacement()
+    {
+        // Lire la valeur de l'InputField et essayer de la convertir en float
+        if (float.TryParse(inputEspacement.text, out float nouvelleValeurEspacement))
+        {
+            // Mettre à jour la variable espacement avec la nouvelle valeur
+            espacement = nouvelleValeurEspacement;
+            Debug.Log("Nouvelle valeur d'espacement : " + espacement);
+            _panelEspacementValid.SetActive(true);
+            _panelEspacementNonValid.SetActive(false);
+            //yield return new WaitForSeconds(3.0f);
+            //_panelEspacementValid.SetActive(false);
+
+        }
+        else
+        {
+            Debug.LogWarning("La valeur d'espacement n'est pas valide.");
+            _panelEspacementNonValid.SetActive(true);
+            _panelEspacementValid.SetActive(false);
+            //yield return new WaitForSeconds(3.0f);
+            //_panelEspacementNonValid.SetActive(false);
+        }
+    }
+
+    /////////////////////////////////
+
+
 
 
 
