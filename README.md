@@ -47,4 +47,4 @@ Ce projet Unity propose deux fonctionnalités. La première permet de projeter e
 
 ## Contributeurs
 
-- [Clément Dahan]
+- Clément Dahan
