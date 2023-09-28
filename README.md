@@ -21,7 +21,7 @@ Ce projet Unity propose deux fonctionnalités. La première permet de projeter e
 
 1. **ARScene.cs**
    - Ce script gère la scène de réalité augmentée (AR) et l'interaction avec les plantes.
-   - Il contrôle la croissance des plantes, le changement de saison et l'affichage du système solaire.
+   - Il contrôle la croissance des plantes, le changement de saison et l'affichage du système jour/nuit.
 
 2. **MainMenu.cs**
    - Gère le menu principal, permettant de naviguer vers la fonction "parcelles pré-faites" ou "création de parcelles".
@@ -44,6 +44,24 @@ Ce projet Unity propose deux fonctionnalités. La première permet de projeter e
 - L'application utilise la réalité augmentée (AR). ARCore doit être à jour sur le mobile ou la tablette utilisée.
 - L'application utilise la géolocalisation pour déterminer la position des éléments.
 - Les plantes sont placées en fonction des points GPS récupérés.
+
+## Packages nécessaires
+
+- AR Foundation 4.2.7
+- ARCore XR Plugin 4.2.7
+- ARKit XR Plugin 4.2.7
+- JetBrains Rider Editor 3.0.18
+- Test Framework 1.1.31
+- TextMeshPro 3.0.6 
+- Timeline 1.6.4
+- Tutorial Framework 3.1.1 
+- Unity UI 1.0.0
+- Universal RP 12.1.10
+- Version Control 2.0.1
+- Visual Scripting 1.8.0
+- Visual Studio Code Editor 1.2.5
+- Visual Studio Editor 2.0.17 
+- XR Plugin Management 4.2.0 
 
 ## Contributeurs
 
